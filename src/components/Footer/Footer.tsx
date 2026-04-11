@@ -1,11 +1,14 @@
-import { FC } from "react"
+import { memo } from "react"
+import { z } from "zod"
 // import Link from "next/link"
 
-interface FooterProps{
-    creds?: boolean
-}
+const FooterPropsSchema = z.object({
+    creds: z.boolean().optional(),
+})
 
-export const Footer: FC<FooterProps> = ({ creds = false }) => {
+type FooterProps = z.infer<typeof FooterPropsSchema>
+
+export const Footer = memo(function Footer({ creds = false }: FooterProps) {
     return (
         <>
             {/* <hr className="h-px my-4 w-48 mx-auto bg-gray-200 border-0" />
@@ -15,4 +18,4 @@ export const Footer: FC<FooterProps> = ({ creds = false }) => {
             </div> */}
         </>
     )
-}
+})

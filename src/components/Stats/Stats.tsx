@@ -1,13 +1,17 @@
-import React, { useEffect, useRef, FC, useState } from 'react';
+import React, { useEffect, useRef, memo, useState } from 'react';
+import { z } from 'zod';
 import * as d3 from 'd3';
+import { History, HistorySchema } from '@/schemas/stats';
 
-interface StatsProps {
-    screenWidth: number,
-    screenHeight: number,
-    data: { date: string, tries: number }[]
-}
+const StatsPropsSchema = z.object({
+    screenWidth: z.number(),
+    screenHeight: z.number(),
+    data: z.array(HistorySchema),
+});
 
-export const Stats: FC<StatsProps> = ({ screenWidth, screenHeight, data }) => {
+type StatsProps = z.infer<typeof StatsPropsSchema>;
+
+export const Stats = memo(function Stats({ screenWidth, screenHeight, data }: StatsProps) {
     const chartRef = useRef<SVGSVGElement | null>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -112,4 +116,4 @@ export const Stats: FC<StatsProps> = ({ screenWidth, screenHeight, data }) => {
     return (
         <svg ref={chartRef} width={dimensions.width} height={dimensions.height}></svg>
     );
-};
+});

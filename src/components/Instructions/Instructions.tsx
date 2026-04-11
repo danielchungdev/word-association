@@ -1,8 +1,9 @@
+import { memo } from "react"
 import Link from "next/link"
 import { TileRow } from "../TileRow"
 import { Footer } from "@/components/Footer"
 
-export const Instructions = () => {
+export const Instructions = memo(function Instructions() {
     return (
         <>
             <p className="text-xl font-bold">How To Play</p>
@@ -30,4 +31,4 @@ export const Instructions = () => {
             <Footer creds={true}/>
         </>
     )
-}
+})

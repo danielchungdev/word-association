@@ -1,10 +1,13 @@
-import { FC } from "react"
+import { memo } from "react"
+import { z } from "zod"
 
-interface NavBarProps{
-    openInstructions: () => void;
-}
+const NavBarPropsSchema = z.object({
+    openInstructions: z.custom<() => void>(),
+})
 
-export const Navbar: FC<NavBarProps> = ({ openInstructions }) => {
+type NavBarProps = z.infer<typeof NavBarPropsSchema>
+
+export const Navbar = memo(function Navbar({ openInstructions }: NavBarProps) {
     return (
         <div className="border-b-2 border-neutral-900 py-4 mx-2">
             <div className="custom-grid">
@@ -30,5 +33,4 @@ export const Navbar: FC<NavBarProps> = ({ openInstructions }) => {
             </div>
         </div>
     )
-}
-
+})

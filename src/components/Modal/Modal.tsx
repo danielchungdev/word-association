@@ -1,17 +1,20 @@
-import { FC, ReactNode } from "react";
+import { ReactNode, memo } from "react";
+import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import Confetti from 'react-confetti'
 import { useWindowSize } from "@uidotdev/usehooks";
 
-interface ModalProps {
-    isOpen: boolean;
-    onClose?: () => void;
-    children: ReactNode;
-    unclosable?: boolean,
-    solidBackdrop?: boolean
-}
+const ModalPropsSchema = z.object({
+    isOpen: z.boolean(),
+    onClose: z.custom<() => void>().optional(),
+    children: z.custom<ReactNode>(),
+    unclosable: z.boolean().optional(),
+    solidBackdrop: z.boolean().optional(),
+});
 
-export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, unclosable = false, solidBackdrop = false }) => {
+type ModalProps = z.infer<typeof ModalPropsSchema>;
+
+export const Modal = memo(function Modal({ isOpen, onClose, children, unclosable = false, solidBackdrop = false }: ModalProps) {
     const size = useWindowSize();
 
     const modalVariants = {
@@ -68,4 +71,4 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, unclosable = 
             </AnimatePresence>
         </>
     );
-};
+});
