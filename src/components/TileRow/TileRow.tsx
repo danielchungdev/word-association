@@ -1,16 +1,19 @@
 "use client";
-import { FC } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { memo } from "react";
+import { z } from "zod";
+import { motion, LegacyAnimationControls } from "framer-motion";
 import { Tile } from "@/components/Tile";
 
-interface TileRowProps {
-	word: string[];
-	animate?: any; // This is to accept the framer motion controls,
-	correct: boolean,
-	size?: "small" | "normal"
-}
+const TileRowPropsSchema = z.object({
+	word: z.array(z.string()),
+	animate: z.custom<LegacyAnimationControls>().optional(),
+	correct: z.boolean(),
+	size: z.enum(["small", "normal"]).optional(),
+});
 
-export const TileRow: FC<TileRowProps> = ({ word, animate, correct, size = "normal"}) => {
+type TileRowProps = z.infer<typeof TileRowPropsSchema>;
+
+export const TileRow = memo(function TileRow({ word, animate, correct, size = "normal" }: TileRowProps) {
 	return (
 		<motion.div
 			className="flex gap-2"
@@ -21,4 +24,4 @@ export const TileRow: FC<TileRowProps> = ({ word, animate, correct, size = "norm
 			))}
 		</motion.div>
 	);
-};
+});
