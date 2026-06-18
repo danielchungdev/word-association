@@ -1,0 +1,39 @@
+# Word Association
+
+> A free daily word chain puzzle game. Connect 8 words in sequence using compound words and popular phrases. A new challenge every day.
+
+## What is Word Association?
+
+Word Association is a browser-based daily word puzzle. Each day, players are presented with a hidden chain of 8 words. Starting from the first revealed word, you must discover the connecting word between each consecutive pair — forming a compound word or well-known phrase.
+
+The game resets at midnight every day. It runs entirely in the browser with no account required, and your statistics are saved locally.
+
+## How to Play
+
+1. The first word in the chain is revealed.
+2. You can see the first letter and length of the next word.
+3. Guess the word that links the current word to the next via a compound word or popular phrase.
+4. For example: OUT → SIDE (outside), SIDE → WALK (sidewalk).
+5. Continue until all 8 words are chained.
+6. Your wrong guesses are counted — try to complete the chain in as few attempts as possible.
+
+## Valid Associations
+
+- **Closed compound words**: sunshine, sidewalk, outside
+- **Open compound words**: almond milk, high school, ice cream
+- **Hyphenated compound words**: well-known, self-made
+
+## Key Facts
+
+- New puzzle released: daily at midnight
+- Chain length: 8 words
+- Cost: free, no sign-up required
+- Stats tracked: streak, total completions, guess distribution (stored locally in browser)
+- Platform: web (any modern browser)
+
+## Game Mechanics
+
+- Each word in the chain connects to only the immediately adjacent word.
+- The number of letters in the next word is shown as empty tiles.
+- The first letter of the next word is revealed as a hint.
+- Wrong guesses are counted but do not end the game — you can keep trying.
